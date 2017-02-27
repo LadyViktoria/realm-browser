@@ -4,7 +4,7 @@ import io.realm.DynamicRealmObject;
 import io.realm.RealmConfiguration;
 import java.lang.reflect.Field;
 
-class RealmHolder {
+public class RealmHolder {
 
     private static final RealmHolder instance = new RealmHolder();
     private DynamicRealmObject object;
@@ -12,7 +12,7 @@ class RealmHolder {
     private RealmConfiguration realmConfiguration;
 
 
-    static RealmHolder getInstance() {
+    public static RealmHolder getInstance() {
         return instance;
     }
 
@@ -49,7 +49,7 @@ class RealmHolder {
     }
 
 
-    void setRealmConfiguration(RealmConfiguration realmConfig) {
+    public void setRealmConfiguration(RealmConfiguration realmConfig) {
         realmConfiguration = realmConfig;
     }
 }

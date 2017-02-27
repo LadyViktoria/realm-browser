@@ -4,10 +4,6 @@
 
     <application>
         <activity
-            android:name=".RealmFilesActivity"
-            android:label="@string/realm_browser_title"
-            android:theme="@style/realm_browser_BaseTheme.Theme" />
-        <activity
             android:name=".RealmModelsActivity"
             android:label="@string/realm_browser_title"
             android:theme="@style/realm_browser_BaseTheme.Theme" />
@@ -20,6 +16,12 @@
             android:name=".RealmBrowserActivity"
             android:label="@string/realm_browser_title"
             android:theme="@style/realm_browser_BaseTheme.DrawerTheme" />
+
+        <activity
+            android:name=".files.FilesActivity"
+            android:label="@string/realm_browser_title"
+            android:theme="@style/realm_browser_BaseTheme.Theme" />
+
     </application>
 
 </manifest>

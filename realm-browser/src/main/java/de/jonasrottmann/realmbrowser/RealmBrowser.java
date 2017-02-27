@@ -12,6 +12,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import de.jonasrottmann.realmbrowser.files.FilesActivity;
 import io.realm.RealmConfiguration;
 import java.util.Collections;
 
@@ -24,7 +25,7 @@ public final class RealmBrowser {
      */
     @SuppressWarnings("WeakerAccess")
     public static void startRealmFilesActivity(@NonNull Context context) {
-        context.startActivity(RealmFilesActivity.getIntent(context));
+        context.startActivity(FilesActivity.getIntent(context));
     }
 
     /**
@@ -52,7 +53,7 @@ public final class RealmBrowser {
      */
     @SuppressWarnings("WeakerAccess")
     public static void showRealmFilesNotification(@NonNull Context context) {
-        Intent notifyIntent = new Intent(context, RealmFilesActivity.class);
+        Intent notifyIntent = new Intent(context, FilesActivity.class);
         notifyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent notifyPendingIntent = PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         showNotification(context, notifyPendingIntent);
@@ -95,7 +96,7 @@ public final class RealmBrowser {
             final ShortcutInfo shortcut = new ShortcutInfo.Builder(context, id).setShortLabel("Files")
                 .setLongLabel("Open Realm Browser files activity")
                 .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_ic_rb)) // TODO create icon according to shortcut design guidelines
-                .setIntent(RealmFilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW))
+                .setIntent(FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW))
                 .build();
             shortcutManager.addDynamicShortcuts(Collections.singletonList(shortcut));
             return id;
@@ -121,7 +122,7 @@ public final class RealmBrowser {
                 .setLongLabel("Open Realm Browser models activity")
                 .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_ic_rb)) // TODO create icon according to shortcut design guidelines
                 .setIntents(new Intent[] {
-                    RealmFilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), RealmModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
+                    FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), RealmModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
                 })
                 .build();
             shortcutManager.addDynamicShortcuts(Collections.singletonList(shortcut));
