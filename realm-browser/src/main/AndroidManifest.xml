@@ -18,7 +18,7 @@
             android:theme="@style/realm_browser_BaseTheme.DrawerTheme" />
 
         <activity
-            android:name=".files.FilesActivity"
+            android:name=".files.view.FilesActivity"
             android:label="@string/realm_browser_title"
             android:theme="@style/realm_browser_BaseTheme.Theme" />
 

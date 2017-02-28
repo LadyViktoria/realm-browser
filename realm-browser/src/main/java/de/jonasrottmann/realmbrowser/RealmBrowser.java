@@ -12,7 +12,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import de.jonasrottmann.realmbrowser.files.FilesActivity;
+import de.jonasrottmann.realmbrowser.files.view.FilesActivity;
 import io.realm.RealmConfiguration;
 import java.util.Collections;
 

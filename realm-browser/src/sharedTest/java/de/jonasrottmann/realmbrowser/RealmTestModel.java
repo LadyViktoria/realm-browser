@@ -6,7 +6,7 @@ import io.realm.annotations.Ignore;
 import java.util.Date;
 import java.util.List;
 
-public class RealmModel extends RealmObject {
+public class RealmTestModel extends RealmObject {
     // Numbers
     int anInteger;
     Integer aBoxedInteger;
@@ -32,11 +32,11 @@ public class RealmModel extends RealmObject {
     // Parametrized
     @Ignore
     List<String> aStringList;
-    RealmList<RealmModel> aRealmList;
+    RealmList<RealmTestModel> aRealmList;
     // Object
-    RealmModel anObject;
+    RealmTestModel anObject;
 
-    public RealmModel() {
+    public RealmTestModel() {
 
     }
 }

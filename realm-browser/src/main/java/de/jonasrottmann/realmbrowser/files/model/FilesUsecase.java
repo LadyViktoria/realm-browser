@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
-public final class FilesDataProvider {
+public final class FilesUsecase {
 
-    private FilesDataProvider() {
+    private FilesUsecase() {
     }
 
     private static List<String> ignoreExtensionList = new ArrayList<>();

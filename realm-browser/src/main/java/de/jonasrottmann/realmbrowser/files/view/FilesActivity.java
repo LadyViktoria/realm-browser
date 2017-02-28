@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser.files;
+package de.jonasrottmann.realmbrowser.files.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,15 +9,13 @@ import android.support.annotation.RestrictTo;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.files.FilesContract;
+import de.jonasrottmann.realmbrowser.files.FilesPresenter;
 import de.jonasrottmann.realmbrowser.files.model.FilesPojo;
 import java.util.ArrayList;
 
@@ -25,7 +23,7 @@ import java.util.ArrayList;
 public class FilesActivity extends AppCompatActivity implements FilesContract.View {
 
     private FilesContract.Presenter presenter;
-    private Adapter adapter;
+    private FilesAdapter adapter;
 
     public static Intent getIntent(@NonNull Context context) {
         Intent intent = new Intent(context, FilesActivity.class);
@@ -44,7 +42,7 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
         swipeRefreshLayout.setEnabled(false);
 
         // Adapter init
-        adapter = new Adapter(this, android.R.layout.simple_list_item_2, new ArrayList<FilesPojo>());
+        adapter = new FilesAdapter(this, android.R.layout.simple_list_item_2, new ArrayList<FilesPojo>());
         ListView listView = (ListView) findViewById(R.id.realm_browser_listView);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,6 +59,11 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
         return presenter;
+    }
+
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -84,41 +87,8 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
     }
 
     @Override
-    public void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.detachView();
-    }
-
-    private static class Adapter extends ArrayAdapter<FilesPojo> {
-
-        private final int resource;
-
-        Adapter(Context context, int res, ArrayList<FilesPojo> classes) {
-            super(context, res, classes);
-            resource = res;
-        }
-
-        @NonNull
-        @Override
-        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            FilesPojo file = getItem(position);
-
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(resource, parent, false);
-            }
-
-            TextView title = (TextView) convertView.findViewById(android.R.id.text1);
-            TextView filesize = (TextView) convertView.findViewById(android.R.id.text2);
-
-            title.setText(file.getName());
-            filesize.setText(file.getSize());
-
-            return convertView;
-        }
     }
 }
