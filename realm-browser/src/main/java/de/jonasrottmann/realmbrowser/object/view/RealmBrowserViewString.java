@@ -1,13 +1,17 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.object.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 import android.view.ViewStub;
 import android.widget.EditText;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import io.realm.DynamicRealmObject;
 import io.realm.RealmObjectSchema;
 import java.lang.reflect.Field;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class RealmBrowserViewString extends RealmBrowserViewField {
 
     EditText fieldEditText;

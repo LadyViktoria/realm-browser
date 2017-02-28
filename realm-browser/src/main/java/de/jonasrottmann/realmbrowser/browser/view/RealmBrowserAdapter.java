@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.browser.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.helper.RealmPreferences;
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
 import java.lang.reflect.Field;
@@ -20,7 +23,6 @@ class RealmBrowserAdapter extends RecyclerView.Adapter<RealmBrowserAdapter.ViewH
     private final Context context;
     private final Listener listener;
     private final RealmPreferences realmPreferences;
-    private final DynamicRealm realm;
     private AbstractList<? extends DynamicRealmObject> dynamicRealmObjects;
     private List<Field> fieldList;
 
@@ -32,7 +34,6 @@ class RealmBrowserAdapter extends RecyclerView.Adapter<RealmBrowserAdapter.ViewH
         dynamicRealmObjects = realmObjects;
         this.fieldList = fieldList;
         this.listener = listener;
-        this.realm = realm;
     }
 
 

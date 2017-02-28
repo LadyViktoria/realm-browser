@@ -1,5 +1,6 @@
 package de.jonasrottmann.realmbrowser;
 
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import java.lang.reflect.Field;
 import org.junit.Test;
 

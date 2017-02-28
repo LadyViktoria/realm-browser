@@ -1,9 +1,11 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.helper;
 
+import android.support.annotation.RestrictTo;
 import io.realm.DynamicRealmObject;
 import io.realm.RealmConfiguration;
 import java.lang.reflect.Field;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class RealmHolder {
 
     private static final RealmHolder instance = new RealmHolder();
@@ -44,7 +46,7 @@ public class RealmHolder {
     /*
      Realm Config
     */
-    RealmConfiguration getRealmConfiguration() {
+    public RealmConfiguration getRealmConfiguration() {
         return realmConfiguration;
     }
 

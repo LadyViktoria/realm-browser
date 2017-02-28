@@ -5,8 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 import android.util.Pair;
 import de.jonasrottmann.realmbrowser.files.model.FilesPojo;
-import de.jonasrottmann.realmbrowser.mvp.BasePresenter;
-import de.jonasrottmann.realmbrowser.mvp.BaseView;
+import de.jonasrottmann.realmbrowser.basemvp.BasePresenter;
+import de.jonasrottmann.realmbrowser.basemvp.BaseView;
 import java.util.ArrayList;
 import java.util.List;
 

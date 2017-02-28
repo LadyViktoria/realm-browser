@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.browser.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +26,11 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.object.view.RealmObjectActivity;
+import de.jonasrottmann.realmbrowser.helper.RealmHolder;
+import de.jonasrottmann.realmbrowser.helper.RealmPreferences;
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import io.realm.Case;
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
@@ -107,7 +112,7 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmBrow
             try {
                 fieldsList.add(mRealmObjectClass.getDeclaredField(s));
             } catch (NoSuchFieldException e) {
-                Timber.d("Initializing field map.", e);
+                Timber.d(e, "Initializing field map.");
             }
         }
         mAdapter = new RealmBrowserAdapter(this, realmObjects, selectedFieldList, this, mDynamicRealm);

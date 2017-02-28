@@ -13,16 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.helper;
 
 import android.content.Context;
+import android.support.annotation.RestrictTo;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
-class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+public class ScrollAwareFABBehavior extends FloatingActionButton.Behavior {
     public ScrollAwareFABBehavior(Context context, AttributeSet attrs) {
         // This is mandatory if we're assigning the behavior straight from XML
         super();

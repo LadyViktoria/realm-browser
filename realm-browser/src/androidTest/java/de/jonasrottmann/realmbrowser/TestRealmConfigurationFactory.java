@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
  * Source: <a href="https://github.com/realm/realm-java">github.com/realm/realm-java</a>
  */
 class TestRealmConfigurationFactory extends TemporaryFolder {
-    private Map<RealmConfiguration, Boolean> map = new ConcurrentHashMap<RealmConfiguration, Boolean>();
+    private Map<RealmConfiguration, Boolean> map = new ConcurrentHashMap<>();
     private Set<RealmConfiguration> configurations = Collections.newSetFromMap(map);
     private boolean unitTestFailed = false;
 

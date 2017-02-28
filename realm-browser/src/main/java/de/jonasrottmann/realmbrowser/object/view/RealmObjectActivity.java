@@ -1,10 +1,11 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.object.view;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RestrictTo;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -15,6 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.browser.view.RealmBrowserActivity;
+import de.jonasrottmann.realmbrowser.helper.RealmHolder;
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import io.realm.DynamicRealm;
 import io.realm.DynamicRealmObject;
 import io.realm.RealmFieldType;
@@ -27,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import timber.log.Timber;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class RealmObjectActivity extends AppCompatActivity {
     private static final String EXTRAS_REALM_MODEL_CLASS = "REALM_MODEL_CLASS";
     private static final String EXTRAS_FLAG_NEW_OBJECT = "NEW_OBJECT";
@@ -44,7 +50,6 @@ public class RealmObjectActivity extends AppCompatActivity {
         intent.putExtra(EXTRAS_FLAG_NEW_OBJECT, newObject);
         return intent;
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,7 @@ public class RealmObjectActivity extends AppCompatActivity {
             try {
                 classFields.add(mRealmObjectClass.getDeclaredField(s));
             } catch (NoSuchFieldException e) {
-                Timber.d("Initializing field map.", e);
+                Timber.d(e, "Initializing field map.");
             }
         }
 

@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser.mvp;
+package de.jonasrottmann.realmbrowser.basemvp;
 
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;

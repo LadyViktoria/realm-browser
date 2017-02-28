@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser.mvp;
+package de.jonasrottmann.realmbrowser.basemvp;
 
 import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
@@ -17,7 +17,7 @@ public abstract class BasePresenterImpl<V extends BaseView.Input> implements Bas
 
     @UiThread
     @Nullable
-    public V getView() {
+    protected V getView() {
         return viewRef == null ? null : viewRef.get();
     }
 

@@ -1,7 +1,8 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.object.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 import android.support.design.widget.Snackbar;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.helper.Utils;
 import io.realm.DynamicRealmObject;
 import io.realm.RealmObjectSchema;
 import java.lang.reflect.Field;
@@ -21,6 +24,7 @@ import static android.graphics.PorterDuff.Mode.SRC_ATOP;
 import static android.support.v4.content.ContextCompat.getColor;
 import static android.support.v4.content.ContextCompat.getDrawable;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 class RealmBrowserViewDate extends RealmBrowserViewField {
 
     private TextView textView;

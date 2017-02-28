@@ -1,11 +1,11 @@
 package de.jonasrottmann.realmbrowser.files;
 
 import android.support.annotation.RestrictTo;
-import de.jonasrottmann.realmbrowser.RealmHolder;
-import de.jonasrottmann.realmbrowser.RealmModelsActivity;
+import de.jonasrottmann.realmbrowser.helper.RealmHolder;
+import de.jonasrottmann.realmbrowser.models.view.RealmModelsActivity;
 import de.jonasrottmann.realmbrowser.files.model.FilesPojo;
 import de.jonasrottmann.realmbrowser.files.model.FilesUsecase;
-import de.jonasrottmann.realmbrowser.mvp.BasePresenterImpl;
+import de.jonasrottmann.realmbrowser.basemvp.BasePresenterImpl;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.exceptions.RealmMigrationNeededException;

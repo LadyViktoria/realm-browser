@@ -1,10 +1,11 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.models.view;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import de.jonasrottmann.realmbrowser.R;
+import de.jonasrottmann.realmbrowser.browser.view.RealmBrowserActivity;
+import de.jonasrottmann.realmbrowser.helper.RealmHolder;
 import io.realm.Realm;
 import io.realm.RealmModel;
 import java.util.ArrayList;
@@ -26,8 +30,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
 
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class RealmModelsActivity extends AppCompatActivity {
-
     private static final int ASC = 0;
     private static final int DESC = 1;
     private Realm realm;
@@ -131,14 +135,15 @@ public class RealmModelsActivity extends AppCompatActivity {
         private final Realm realm;
 
 
-        public Adapter(Context context, int res, ArrayList<Class<? extends RealmModel>> classes, Realm realm) {
+        Adapter(Context context, int res, ArrayList<Class<? extends RealmModel>> classes, Realm realm) {
             super(context, res, classes);
             this.realm = realm;
             this.res = res;
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             Class realmModel = getItem(position);
 
             if (convertView == null) {

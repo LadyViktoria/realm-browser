@@ -1,16 +1,18 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.RestrictTo;
 
-class RealmPreferences {
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
+public class RealmPreferences {
 
     private static final String PREF_NAME = "pref.realm";
     private static final String WRAP_TEXT = "WRAP_TEXT";
     private final Context context;
 
 
-    RealmPreferences(Context context) {
+    public RealmPreferences(Context context) {
         this.context = context;
     }
 
@@ -20,12 +22,12 @@ class RealmPreferences {
     }
 
 
-    void setShouldWrapText(boolean value) {
+    public void setShouldWrapText(boolean value) {
         preferences().edit().putBoolean(WRAP_TEXT, value).apply();
     }
 
 
-    boolean shouldWrapText() {
+    public boolean shouldWrapText() {
         return preferences().getBoolean(WRAP_TEXT, false);
     }
 }
