@@ -15,6 +15,10 @@ import java.util.Date;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class Utils {
+
+    private Utils() {
+    }
+
     @NonNull
     public static String createParametrizedName(@NonNull Field field) {
         //noinspection ConstantConditions
@@ -93,7 +97,7 @@ public class Utils {
     }
 
 
-    public static boolean isNumberField(@NonNull Field field) {
+    public static boolean isNumber(@NonNull Field field) {
         return isLong(field) || isInteger(field) || isShort(field) || isByte(field) || isDouble(field) || isFloat(field);
     }
 

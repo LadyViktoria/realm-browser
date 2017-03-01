@@ -68,15 +68,14 @@ public class RealmBrowserActivity extends AppCompatActivity implements RealmBrow
     private FloatingActionButton fab;
 
 
-    public static void start(Context context, Class<? extends RealmModel> realmModelClass) {
+    public static void start(@NonNull Context context, Class<? extends RealmModel> realmModelClass) {
         Intent intent = new Intent(context, RealmBrowserActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra(EXTRAS_REALM_MODEL_CLASS, realmModelClass);
         context.startActivity(intent);
     }
 
-
-    public static void start(Context context) {
+    public static void start(@NonNull Context context) {
         Intent intent = new Intent(context, RealmBrowserActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);

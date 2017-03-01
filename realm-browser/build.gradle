@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'realm-android'
 apply plugin: 'com.getkeepsafe.dexcount'
-apply plugin: 'jacoco'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -27,6 +26,7 @@ android {
     }
 
     testOptions {
+        unitTests.returnDefaultValues = true
         unitTests.all {
             jacoco {
                 includeNoLocationClasses = true
@@ -67,21 +67,5 @@ dependencies {
     //    androidTestApt "io.realm:realm-annotations-processor:$project.realmVersion"
 }
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['createDebugCoverageReport']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "$buildDir", includes: ["jacoco/testDebugUnitTest.exec",
-                                                          "outputs/code-coverage/connected/*coverage.ec"])
-}
-
+apply from: rootProject.file('coverage.gradle')
 apply from: rootProject.file('publish.gradle')

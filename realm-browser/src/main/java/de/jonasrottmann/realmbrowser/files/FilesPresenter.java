@@ -1,11 +1,12 @@
 package de.jonasrottmann.realmbrowser.files;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
-import de.jonasrottmann.realmbrowser.helper.RealmHolder;
-import de.jonasrottmann.realmbrowser.models.view.RealmModelsActivity;
+import de.jonasrottmann.realmbrowser.basemvp.BasePresenterImpl;
 import de.jonasrottmann.realmbrowser.files.model.FilesPojo;
 import de.jonasrottmann.realmbrowser.files.model.FilesUsecase;
-import de.jonasrottmann.realmbrowser.basemvp.BasePresenterImpl;
+import de.jonasrottmann.realmbrowser.helper.RealmHolder;
+import de.jonasrottmann.realmbrowser.models.view.ModelsActivity;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.exceptions.RealmMigrationNeededException;
@@ -14,7 +15,7 @@ import io.realm.exceptions.RealmMigrationNeededException;
 public class FilesPresenter extends BasePresenterImpl<FilesContract.View> implements FilesContract.Presenter {
 
     @Override
-    public void attachView(FilesContract.View view) {
+    public void attachView(@NonNull FilesContract.View view) {
         super.attachView(view);
         view.showFilesList(FilesUsecase.fetchFilesList(getView()));
     }
@@ -28,7 +29,7 @@ public class FilesPresenter extends BasePresenterImpl<FilesContract.View> implem
             realm.close();
             if (isViewAttached()) {
                 //noinspection ConstantConditions
-                getView().getViewContext().startActivity(RealmModelsActivity.getIntent(getView().getViewContext()));
+                getView().getViewContext().startActivity(ModelsActivity.getIntent(getView().getViewContext()));
             }
         } catch (RealmMigrationNeededException e) {
             if (isViewAttached()) {

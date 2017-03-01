@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:name=".models.view.RealmModelsActivity"
+            android:name=".models.view.ModelsActivity"
             android:label="@string/realm_browser_title"
             android:theme="@style/realm_browser_BaseTheme.Theme" />
         <activity

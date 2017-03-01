@@ -1,4 +1,4 @@
-package de.jonasrottmann.realmbrowser;
+package de.jonasrottmann.realmbrowser.helper;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
  * <p/>
  * Source: <a href="https://github.com/realm/realm-java">github.com/realm/realm-java</a>
  */
-class TestRealmConfigurationFactory extends TemporaryFolder {
+public class TestRealmConfigurationFactory extends TemporaryFolder {
     private Map<RealmConfiguration, Boolean> map = new ConcurrentHashMap<>();
     private Set<RealmConfiguration> configurations = Collections.newSetFromMap(map);
     private boolean unitTestFailed = false;

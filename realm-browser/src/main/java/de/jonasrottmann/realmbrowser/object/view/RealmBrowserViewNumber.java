@@ -27,7 +27,7 @@ class RealmBrowserViewNumber extends RealmBrowserViewField {
 
     public RealmBrowserViewNumber(Context context, @NonNull RealmObjectSchema realmObjectSchema, @NonNull Field field) {
         super(context, realmObjectSchema, field);
-        if (!Utils.isNumberField(getField())) {
+        if (!Utils.isNumber(getField())) {
             throw new IllegalArgumentException();
         }
     }
@@ -86,7 +86,7 @@ class RealmBrowserViewNumber extends RealmBrowserViewField {
 
     @Override
     public void setRealmObject(@NonNull DynamicRealmObject realmObject) {
-        if (Utils.isNumberField(getField())) {
+        if (Utils.isNumber(getField())) {
             fieldEditText.setText(String.valueOf(realmObject.get(getField().getName())));
         } else {
             throw new IllegalArgumentException();

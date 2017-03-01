@@ -14,7 +14,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import de.jonasrottmann.realmbrowser.files.view.FilesActivity;
 import de.jonasrottmann.realmbrowser.helper.RealmHolder;
-import de.jonasrottmann.realmbrowser.models.view.RealmModelsActivity;
+import de.jonasrottmann.realmbrowser.models.view.ModelsActivity;
 import io.realm.RealmConfiguration;
 import java.util.Collections;
 
@@ -47,7 +47,7 @@ public final class RealmBrowser {
     @SuppressWarnings("WeakerAccess")
     public static void startRealmModelsActivity(@NonNull Context context, @NonNull RealmConfiguration realmConfiguration) {
         RealmHolder.getInstance().setRealmConfiguration(realmConfiguration);
-        context.startActivity(RealmModelsActivity.getIntent(context));
+        context.startActivity(ModelsActivity.getIntent(context));
     }
 
     /**
@@ -68,7 +68,7 @@ public final class RealmBrowser {
     @SuppressWarnings("WeakerAccess")
     public static void showRealmModelsNotification(@NonNull Context context, @NonNull RealmConfiguration realmConfiguration) {
         RealmHolder.getInstance().setRealmConfiguration(realmConfiguration);
-        Intent notifyIntent = RealmModelsActivity.getIntent(context);
+        Intent notifyIntent = ModelsActivity.getIntent(context);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         showNotification(context, pendingIntent);
     }
@@ -124,7 +124,7 @@ public final class RealmBrowser {
                 .setLongLabel("Open Realm Browser models activity")
                 .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_ic_rb)) // TODO create icon according to shortcut design guidelines
                 .setIntents(new Intent[] {
-                    FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), RealmModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
+                    FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), ModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
                 })
                 .build();
             shortcutManager.addDynamicShortcuts(Collections.singletonList(shortcut));

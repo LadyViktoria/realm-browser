@@ -1,24 +1,39 @@
 package de.jonasrottmann.realmbrowser.models;
 
 import android.content.Context;
+import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
-import de.jonasrottmann.realmbrowser.models.model.ModelsPojo;
 import de.jonasrottmann.realmbrowser.basemvp.BasePresenter;
 import de.jonasrottmann.realmbrowser.basemvp.BaseView;
+import de.jonasrottmann.realmbrowser.models.model.ModelPojo;
+import java.lang.annotation.Retention;
 import java.util.ArrayList;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public interface ModelsContract {
-    interface Presenter extends BasePresenter<ModelsContract.View> {
-        void onModelSelected(ModelsPojo item);
+    @Retention(SOURCE)
+    @IntDef({ SortMode.ASC, SortMode.DESC })
+    @interface SortMode {
+        int ASC = 0;
+        int DESC = 1;
     }
 
-    interface View extends BaseView.Input<ModelsContract.Presenter> {
-        void showModelsList(@NonNull ArrayList<ModelsPojo> filesList);
+    interface Presenter extends BasePresenter<View> {
+        void onModelSelected(ModelPojo item);
+
+        void onSortModeChanged();
+
+        void requestForContentUpdate();
+
+        void onFilterChanged(@NonNull String filter);
+    }
+
+    interface View extends BaseView<Presenter> {
+        void updateView(@NonNull ArrayList<ModelPojo> filesList, @SortMode int sortMode);
 
         Context getViewContext();
-
-        void showToast(String message);
     }
 }

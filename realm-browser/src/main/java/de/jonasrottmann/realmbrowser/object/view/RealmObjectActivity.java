@@ -83,7 +83,7 @@ public class RealmObjectActivity extends AppCompatActivity {
             RealmBrowserViewField realmFieldView;
             if (Utils.isString(field)) {
                 realmFieldView = new RealmBrowserViewString(this, schema, field);
-            } else if (Utils.isNumberField(field)) {
+            } else if (Utils.isNumber(field)) {
                 realmFieldView = new RealmBrowserViewNumber(this, schema, field);
             } else if (Utils.isBoolean(field)) {
                 realmFieldView = new RealmBrowserViewBool(this, schema, field);
