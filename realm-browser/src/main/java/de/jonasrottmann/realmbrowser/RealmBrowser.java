@@ -97,7 +97,7 @@ public final class RealmBrowser {
             final ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             final ShortcutInfo shortcut = new ShortcutInfo.Builder(context, id).setShortLabel("Files")
                 .setLongLabel("Open Realm Browser files activity")
-                .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_ic_rb)) // TODO create icon according to shortcut design guidelines
+                .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_shortcut_rb))
                 .setIntent(FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW))
                 .build();
             shortcutManager.addDynamicShortcuts(Collections.singletonList(shortcut));
@@ -122,7 +122,7 @@ public final class RealmBrowser {
             final ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             final ShortcutInfo shortcut = new ShortcutInfo.Builder(context, id).setShortLabel("Models")
                 .setLongLabel("Open Realm Browser models activity")
-                .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_ic_rb)) // TODO create icon according to shortcut design guidelines
+                .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_shortcut_rb))
                 .setIntents(new Intent[] {
                     FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), ModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
                 })
