@@ -10,7 +10,7 @@ buildscript {
         minSdkVersion = 15
 
         // plugins
-        androidGradlePluginVersion = '2.2.3'
+        androidGradlePluginVersion = '2.3.0'
         realmVersion = '2.3.2'
         dexcountVersion = '0.6.2'
 
