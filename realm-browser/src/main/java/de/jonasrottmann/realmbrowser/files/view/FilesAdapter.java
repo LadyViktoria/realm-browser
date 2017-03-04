@@ -2,7 +2,6 @@ package de.jonasrottmann.realmbrowser.files.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +17,11 @@ import java.util.List;
 class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> {
 
     private final List<FilesPojo> files;
+    private final OnFileSelectedListener listener;
 
-    FilesAdapter(@NonNull List<FilesPojo> list) {
+    FilesAdapter(@NonNull ArrayList<FilesPojo> list, @NonNull OnFileSelectedListener listener) {
         this.files = list;
+        this.listener = listener;
     }
 
     @Override
@@ -34,6 +35,7 @@ class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> {
         FilesPojo file = files.get(position);
         holder.title.setText(file.getName());
         holder.subTitle.setText(file.getSize());
+        holder.itemView.setOnClickListener(createClickListener(this.files.get(position)));
     }
 
     @Override
@@ -73,5 +75,18 @@ class FilesAdapter extends RecyclerView.Adapter<FilesAdapter.ViewHolder> {
             title = (TextView) itemView.findViewById(android.R.id.text1);
             subTitle = (TextView) itemView.findViewById(android.R.id.text2);
         }
+    }
+
+    interface OnFileSelectedListener {
+        void onFileSelected(FilesPojo file);
+    }
+
+    private View.OnClickListener createClickListener(@NonNull final FilesPojo file) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onFileSelected(file);
+            }
+        };
     }
 }

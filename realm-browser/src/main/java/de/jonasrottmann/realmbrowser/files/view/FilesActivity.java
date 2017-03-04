@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 import de.jonasrottmann.realmbrowser.R;
 import de.jonasrottmann.realmbrowser.files.FilesContract;
@@ -41,16 +42,16 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
         swipeRefreshLayout.setEnabled(false);
 
         // Adapter init
-        adapter = new FilesAdapter(null);
+        adapter = new FilesAdapter(new ArrayList<FilesPojo>(), new FilesAdapter.OnFileSelectedListener() {
+            @Override
+            public void onFileSelected(FilesPojo file) {
+                FilesActivity.this.presenter.onFileSelected(file);
+            }
+        });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.realm_browser_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-        //recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        //    @Override
-        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //        presenter.onFileSelected(adapter.getItem(position));
-        //    }
-        //});
+
 
         // Presenter
         attachPresenter((FilesContract.Presenter) getLastCustomNonConfigurationInstance());
