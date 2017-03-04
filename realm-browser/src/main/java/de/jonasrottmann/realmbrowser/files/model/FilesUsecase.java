@@ -33,7 +33,7 @@ public final class FilesUsecase {
         for (File file : files) {
             String fileName = file.getName();
             if (isValidFileName(fileName)) {
-                fileList.add(new FilesPojo(fileName, Formatter.formatShortFileSize(view.getViewContext(), file.length())));
+                fileList.add(new FilesPojo(fileName, Formatter.formatShortFileSize(view.getViewContext(), file.length()), file.length()));
             }
         }
         return fileList;

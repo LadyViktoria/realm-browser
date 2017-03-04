@@ -56,7 +56,7 @@ public class ModelsActivity extends AppCompatActivity implements ModelsContract.
         swipeRefreshLayout.setColorSchemeResources(R.color.realm_browser_dark_purple);
 
         adapter = new ModelsAdapter(this, android.R.layout.simple_list_item_2, new ArrayList<ModelPojo>());
-        ListView listView = (ListView) findViewById(R.id.realm_browser_listView);
+        ListView listView = (ListView) findViewById(R.id.realm_browser_recycler);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

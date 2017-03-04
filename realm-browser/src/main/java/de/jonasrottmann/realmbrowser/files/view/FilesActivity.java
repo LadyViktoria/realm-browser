@@ -8,10 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RestrictTo;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 import de.jonasrottmann.realmbrowser.R;
 import de.jonasrottmann.realmbrowser.files.FilesContract;
@@ -34,7 +33,7 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.realm_browser_ac_realm_list_view);
+        setContentView(R.layout.realm_browser_ac_files);
         setSupportActionBar((Toolbar) findViewById(R.id.realm_browser_toolbar));
 
         // Disable SwipeRefreshLayout - not used in this Activity
@@ -42,15 +41,16 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
         swipeRefreshLayout.setEnabled(false);
 
         // Adapter init
-        adapter = new FilesAdapter(this, android.R.layout.simple_list_item_2, new ArrayList<FilesPojo>());
-        ListView listView = (ListView) findViewById(R.id.realm_browser_listView);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                presenter.onFileSelected(adapter.getItem(position));
-            }
-        });
+        adapter = new FilesAdapter(null);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.realm_browser_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        //recyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //    @Override
+        //    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //        presenter.onFileSelected(adapter.getItem(position));
+        //    }
+        //});
 
         // Presenter
         attachPresenter((FilesContract.Presenter) getLastCustomNonConfigurationInstance());
@@ -77,8 +77,7 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
 
     @Override
     public void showFilesList(@NonNull ArrayList<FilesPojo> filesList) {
-        adapter.clear();
-        adapter.addAll(filesList);
+        adapter.swapList(filesList);
     }
 
     @Override
