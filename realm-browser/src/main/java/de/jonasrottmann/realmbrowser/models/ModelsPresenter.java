@@ -20,11 +20,6 @@ public class ModelsPresenter extends BasePresenterImpl<ModelsContract.View> impl
 
     //region ViewInput
     @Override
-    public void attachView(@NonNull ModelsContract.View view) {
-        super.attachView(view);
-    }
-
-    @Override
     public void onSortModeChanged() {
         //noinspection WrongConstant
         sortMode = (sortMode + 1) % 2;

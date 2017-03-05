@@ -45,7 +45,7 @@ public class FilesPresenter extends BasePresenterImpl<FilesContract.View> implem
         } catch (Exception e) {
             if (isViewAttached()) {
                 //noinspection ConstantConditions
-                getView().showToast("Can't open realm instance");
+                getView().showToast("Can't open realm instance. You must close all open realm instances before opening this file.");
             }
         }
     }
