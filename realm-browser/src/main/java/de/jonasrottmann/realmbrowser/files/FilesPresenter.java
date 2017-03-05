@@ -4,20 +4,26 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
 import de.jonasrottmann.realmbrowser.basemvp.BasePresenterImpl;
 import de.jonasrottmann.realmbrowser.files.model.FilesPojo;
-import de.jonasrottmann.realmbrowser.files.model.FilesUsecase;
 import de.jonasrottmann.realmbrowser.helper.RealmHolder;
 import de.jonasrottmann.realmbrowser.models.view.ModelsActivity;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.exceptions.RealmMigrationNeededException;
+import java.util.ArrayList;
 
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP)
 public class FilesPresenter extends BasePresenterImpl<FilesContract.View> implements FilesContract.Presenter {
 
+    private final FilesInteractor interactor;
+
+    public FilesPresenter() {
+        this.interactor = new FilesInteractor(this);
+    }
+
     @Override
     public void attachView(@NonNull FilesContract.View view) {
         super.attachView(view);
-        view.showFilesList(FilesUsecase.fetchFilesList(getView()));
+        interactor.getAllFilesList(view.getViewContext());
     }
 
     @Override
@@ -41,6 +47,14 @@ public class FilesPresenter extends BasePresenterImpl<FilesContract.View> implem
                 //noinspection ConstantConditions
                 getView().showToast("Can't open realm instance");
             }
+        }
+    }
+
+    @Override
+    public void updateWithFiles(ArrayList<FilesPojo> filesList) {
+        if (isViewAttached()) {
+            //noinspection ConstantConditions
+            getView().showFilesList(filesList);
         }
     }
 }

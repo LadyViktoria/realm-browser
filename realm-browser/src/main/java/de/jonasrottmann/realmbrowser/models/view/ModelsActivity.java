@@ -70,6 +70,7 @@ public class ModelsActivity extends AppCompatActivity implements ModelsContract.
 
         // Presenter
         attachPresenter((ModelsContract.Presenter) getLastCustomNonConfigurationInstance());
+        presenter.requestForContentUpdate();
     }
 
     @Override

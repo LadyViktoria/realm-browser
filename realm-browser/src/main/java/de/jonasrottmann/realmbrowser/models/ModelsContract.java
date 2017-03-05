@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.RestrictTo;
+import de.jonasrottmann.realmbrowser.basemvp.BaseInteractor;
 import de.jonasrottmann.realmbrowser.basemvp.BasePresenter;
 import de.jonasrottmann.realmbrowser.basemvp.BaseView;
 import de.jonasrottmann.realmbrowser.models.model.ModelPojo;
@@ -21,19 +22,25 @@ public interface ModelsContract {
         int DESC = 1;
     }
 
-    interface Presenter extends BasePresenter<View> {
-        void onModelSelected(ModelPojo item);
-
-        void onSortModeChanged();
-
-        void requestForContentUpdate();
-
-        void onFilterChanged(@NonNull String filter);
-    }
-
     interface View extends BaseView<Presenter> {
         void updateWithModels(@NonNull ArrayList<ModelPojo> filesList, @SortMode int sortMode);
 
         Context getViewContext();
+    }
+
+    interface Presenter extends BasePresenter<View> {
+        void requestForContentUpdate();
+
+        void onModelSelected(ModelPojo item);
+
+        void onSortModeChanged();
+
+        void onFilterChanged(@NonNull String filter);
+
+        void updateWithModels(@NonNull ArrayList<ModelPojo> modelsList, @SortMode int sortMode);
+    }
+
+    interface Interactor extends BaseInteractor {
+
     }
 }
