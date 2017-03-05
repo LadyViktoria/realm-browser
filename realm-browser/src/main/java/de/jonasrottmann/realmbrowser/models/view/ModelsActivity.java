@@ -9,14 +9,13 @@ import android.support.annotation.RestrictTo;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import de.jonasrottmann.realmbrowser.R;
 import de.jonasrottmann.realmbrowser.models.ModelsContract;
 import de.jonasrottmann.realmbrowser.models.ModelsPresenter;
@@ -43,7 +42,7 @@ public class ModelsActivity extends AppCompatActivity implements ModelsContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.realm_browser_ac_realm_list_view);
+        setContentView(R.layout.realm_browser_ac_recycler);
         setSupportActionBar((Toolbar) findViewById(R.id.realm_browser_toolbar));
 
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
@@ -55,15 +54,15 @@ public class ModelsActivity extends AppCompatActivity implements ModelsContract.
         });
         swipeRefreshLayout.setColorSchemeResources(R.color.realm_browser_dark_purple);
 
-        adapter = new ModelsAdapter(this, android.R.layout.simple_list_item_2, new ArrayList<ModelPojo>());
-        ListView listView = (ListView) findViewById(R.id.realm_browser_recycler);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        adapter = new ModelsAdapter(new ArrayList<ModelPojo>(), new ModelsAdapter.OnModelSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                onItemClicked(adapter.getItem(position));
+            public void onModelSelected(ModelPojo file) {
+                ModelsActivity.this.presenter.onModelSelected(file);
             }
         });
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.realm_browser_recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
 
         if (savedInstanceState != null) {
             searchString = savedInstanceState.getString(SEARCH_KEY);
@@ -118,18 +117,12 @@ public class ModelsActivity extends AppCompatActivity implements ModelsContract.
         }
     }
 
-    private void onItemClicked(ModelPojo pojo) {
-        presenter.onModelSelected(pojo);
-    }
-
     @Override
-    public void updateView(@NonNull ArrayList<ModelPojo> filesList, @ModelsContract.SortMode int sortMode) {
-        adapter.clear();
-        adapter.addAll(filesList);
-        adapter.notifyDataSetChanged();
-        if (sortMode == ModelsContract.SortMode.ASC && sortMenuItem != null) {
+    public void updateWithModels(@NonNull ArrayList<ModelPojo> filesList, @ModelsContract.SortMode int sortedMode) {
+        adapter.swapList(filesList);
+        if (sortedMode == ModelsContract.SortMode.ASC && sortMenuItem != null) {
             this.sortMenuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.realm_browser_ic_sort_ascending_white_24dp));
-        } else if (sortMode == ModelsContract.SortMode.DESC && sortMenuItem != null) {
+        } else if (sortedMode == ModelsContract.SortMode.DESC && sortMenuItem != null) {
             this.sortMenuItem.setIcon(ContextCompat.getDrawable(this, R.drawable.realm_browser_ic_sort_descending_white_24dp));
         }
         if (swipeRefreshLayout != null && swipeRefreshLayout.isRefreshing()) {

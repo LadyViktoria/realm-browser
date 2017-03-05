@@ -29,7 +29,7 @@ public class ModelsPresenter extends BasePresenterImpl<ModelsContract.View> impl
         sortMode = (sortMode + 1) % 2;
         if (isViewAttached()) {
             //noinspection ConstantConditions
-            getView().updateView(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), sortMode);
+            getView().updateWithModels(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), sortMode);
         }
     }
 
@@ -38,7 +38,7 @@ public class ModelsPresenter extends BasePresenterImpl<ModelsContract.View> impl
         this.pojos = getModelPojos();
         if (isViewAttached()) {
             //noinspection ConstantConditions
-            getView().updateView(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), sortMode);
+            getView().updateWithModels(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), sortMode);
         }
     }
 
@@ -48,7 +48,7 @@ public class ModelsPresenter extends BasePresenterImpl<ModelsContract.View> impl
         ArrayList<ModelPojo> filteredPojos = filterPojos(pojos, filter);
         if (isViewAttached()) {
             //noinspection ConstantConditions
-            getView().updateView(filteredPojos == null ? pojos : filteredPojos, sortMode);
+            getView().updateWithModels(filteredPojos == null ? pojos : filteredPojos, sortMode);
         }
     }
 
@@ -66,7 +66,7 @@ public class ModelsPresenter extends BasePresenterImpl<ModelsContract.View> impl
         if (this.pojos == null) {
             this.pojos = getModelPojos();
         }
-        view.updateView(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), this.sortMode);
+        view.updateWithModels(filterPojos(sortedModelPojos(pojos, this.sortMode), filter), this.sortMode);
     }
 
     //region HELPER

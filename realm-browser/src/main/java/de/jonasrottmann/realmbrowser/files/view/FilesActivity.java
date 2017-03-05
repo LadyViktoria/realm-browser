@@ -11,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Toast;
 import de.jonasrottmann.realmbrowser.R;
 import de.jonasrottmann.realmbrowser.files.FilesContract;
@@ -34,7 +33,7 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.realm_browser_ac_files);
+        setContentView(R.layout.realm_browser_ac_recycler);
         setSupportActionBar((Toolbar) findViewById(R.id.realm_browser_toolbar));
 
         // Disable SwipeRefreshLayout - not used in this Activity
@@ -51,7 +50,6 @@ public class FilesActivity extends AppCompatActivity implements FilesContract.Vi
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.realm_browser_recycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
 
         // Presenter
         attachPresenter((FilesContract.Presenter) getLastCustomNonConfigurationInstance());

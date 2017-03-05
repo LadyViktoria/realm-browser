@@ -32,7 +32,7 @@ public interface ModelsContract {
     }
 
     interface View extends BaseView<Presenter> {
-        void updateView(@NonNull ArrayList<ModelPojo> filesList, @SortMode int sortMode);
+        void updateWithModels(@NonNull ArrayList<ModelPojo> filesList, @SortMode int sortMode);
 
         Context getViewContext();
     }

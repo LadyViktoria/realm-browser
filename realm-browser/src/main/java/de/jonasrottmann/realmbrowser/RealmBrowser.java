@@ -96,7 +96,7 @@ public final class RealmBrowser {
             final String id = "realm_browser_ac_files";
             final ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             final ShortcutInfo shortcut = new ShortcutInfo.Builder(context, id).setShortLabel("Files")
-                .setLongLabel("Open Realm Browser files activity")
+                .setLongLabel("Open realm-browser files activity")
                 .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_shortcut_rb))
                 .setIntent(FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW))
                 .build();
@@ -121,7 +121,7 @@ public final class RealmBrowser {
             final String id = "realm_browser_ac_models";
             final ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             final ShortcutInfo shortcut = new ShortcutInfo.Builder(context, id).setShortLabel("Models")
-                .setLongLabel("Open Realm Browser models activity")
+                .setLongLabel("Open realm-browser models activity")
                 .setIcon(Icon.createWithResource(context, R.drawable.realm_browser_shortcut_rb))
                 .setIntents(new Intent[] {
                     FilesActivity.getIntent(context).setAction(Intent.ACTION_VIEW), ModelsActivity.getIntent(context).setAction(Intent.ACTION_VIEW)
